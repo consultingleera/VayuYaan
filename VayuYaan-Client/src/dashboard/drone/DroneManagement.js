@@ -237,8 +237,8 @@ function DroneManagement() {
                                                 <td>{drone.model}</td>
                                                 <td>{drone.service}</td>
                                                 <td>{drone.status}</td>
-                                                <td>{null}</td>
-                                                <td>{null}</td>
+                                                <td>{drone.farmerId}</td>
+                                                <td>{drone.pilotId}</td>
                                                 <td>{null}</td>
                                                 <td><button onClick={() => deleteDrone(drone._id)}>Delete</button></td>
                                                 <td><button onClick={() => editDrone(drone._id)}>Edit</button></td>

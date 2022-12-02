@@ -5,31 +5,31 @@ import styles from './profile.module.scss';
 import axios from 'axios';
 import { url } from '../utils/constants';
 
-function Farmer()  {
+function Pilot()  {
 
-    const [farmer, setFarmer] = useState();
+    const [pilot, setPilot] = useState();
 
     const user = JSON.parse(localStorage.getItem('user'));
     console.log("user", user)
 
-    if (!user || user.role !== 'farmer') {
+    if (!user || user.role !== 'pilot') {
         window.location = "/adminaccess"
     }
 
     useEffect(() => {
-        axios.get(`${url}/api/farmer/email/${user.email}`, {
+        axios.get(`${url}/api/pilot/email/${user.email}`, {
             "Content-Type": "application/json",
         })
             .then(function (response) {
                 console.log(response);
-                setFarmer(response.data.data[0]);
+                setPilot(response.data.data[0]);
             })
             .catch(function (error) {
                 console.log(error);
             });
     }, [])
 
-    console.log(farmer)
+    console.log(pilot)
 
     return (
         <>
@@ -40,13 +40,13 @@ function Farmer()  {
                     Profile
                 </div>
                 {
-                    farmer &&
+                    pilot &&
                     <div className={styles['row']}>
                         <div className={styles['farmer-profile']}>
                             <div className={styles['details']}>
                                 <img src='https://picsum.photos/150' />
                                 <div className={styles['name-section']}>
-                                    {farmer.name}
+                                    {pilot.name}
                                 </div>
                             </div>
 
@@ -56,7 +56,7 @@ function Farmer()  {
                                         Email
                                     </div>
                                     <div className={styles['col']}>
-                                    {farmer.email}
+                                    {pilot.email}
                                     </div>
                                 </div>
 
@@ -65,7 +65,7 @@ function Farmer()  {
                                         Phone
                                     </div>
                                     <div className={styles['col']}>
-                                    {farmer.phone}
+                                    {pilot.phone}
                                     </div>
                                 </div>
 
@@ -74,7 +74,7 @@ function Farmer()  {
                                         Birthday
                                     </div>
                                     <div className={styles['col']}>
-                                    {farmer.birthday}
+                                    {pilot.birthday}
                                     </div>
                                 </div>
 
@@ -83,7 +83,7 @@ function Farmer()  {
                                         Credit Card
                                     </div>
                                     <div className={styles['col']}>
-                                    {farmer.billingInformation.cardnumber}
+                                    {pilot.billingInformation.cardnumber}
                                     </div>
                                 </div>
 
@@ -108,7 +108,7 @@ function Farmer()  {
                         </div>
                         <div className={styles['btn-section']}>
                             <div className={styles['navigate-btn']} style={{cursor: "pointer"}}>
-                                <button className={styles['blue']} onClick={() => window.location = "/profile/farm"}>Farm Profile</button>
+                                <button className={styles['blue']} onClick={() => window.location = `/dashboard/pilot/scheduleOne/${pilot._id}`}>Schedule Flight</button>
                             </div>
                             {/* <div className={styles['navigate-btn']}>
                                 <button className={styles['blue']}>Farm Verification</button>
@@ -125,4 +125,4 @@ function Farmer()  {
     )
 }
 
-export default Farmer;
+export default Pilot;

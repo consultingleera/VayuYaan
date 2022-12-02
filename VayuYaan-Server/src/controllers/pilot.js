@@ -42,6 +42,16 @@ async function viewPilot(req, res) {
     });
 }
 
+async function viewPilotByEmail(req, res) {
+    const email = req.params.email;
+    const pilot = await Pilot.find({ "email": email}).exec();
+
+    return res.status(200).json({
+        success: true,
+        data: pilot,
+    });
+}
+
 async function deletePilot(req, res) {
     const id = req.params.id;
     const pilot = await Pilot.deleteOne({ _id: id }).exec();
@@ -82,6 +92,7 @@ module.exports = {
     createPilot,
     viewPilots,
     viewPilot,
+    viewPilotByEmail,
     deletePilot,
     editPilot
 }

@@ -2,7 +2,9 @@ const { Farmer } = require('../models/farmer');
 const { Farm } = require('../models/farm');
 
 async function createFarmer(req, res) {
-    const { name, phone, email, birthday, gender, farm, billingInformation, utilitybill, driverlicense } = req.body;
+    const { name, phone, email, birthday, gender, farm, billingInformation, utilitybill } = req.body;
+
+    console.log(req.body)
 
     let farmer = new Farmer({
         name,
@@ -13,10 +15,11 @@ async function createFarmer(req, res) {
         farm,
         billingInformation,
         utilitybill,
-        driverlicense
     })
 
     farmer = await farmer.save();
+
+
 
     let farmCol = new Farm({
         name: farm.name,
@@ -80,7 +83,7 @@ async function deleteFarmer(req, res) {
 
 async function editFarmer(req, res) {
 
-    const { name, phone, email, birthday, gender, farm, billingInformation, utilitybill, driverlicense } = req.body;
+    const { name, phone, email, birthday, gender, farm, billingInformation, utilitybill } = req.body;
 
     const id = req.params.id;
     const farmer = await Farmer.updateOne({ _id: id }, {
@@ -93,7 +96,6 @@ async function editFarmer(req, res) {
             farm,
             billingInformation,
             utilitybill,
-            driverlicense
         }
     }).exec();
 

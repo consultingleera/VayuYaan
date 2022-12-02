@@ -61,7 +61,7 @@ function Three()  {
 
                     <div className={styles['row']}>
                         <div className={styles['input-field']}>
-                            <input type="text" value={expiration} onChange={(e) => setExpiration(e.target.value)} placeholder="Expiration" />
+                            <input type="date" value={expiration} onChange={(e) => setExpiration(e.target.value)} placeholder="Expiration" />
                         </div>
                         <div className={styles['input-field']}>
                             <input type="text" value={cvv} onChange={(e) => setCvv(e.target.value)} placeholder="CVV" />

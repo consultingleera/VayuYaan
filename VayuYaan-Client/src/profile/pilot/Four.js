@@ -28,6 +28,11 @@ function Four()  {
         cookies.set('pilot', oneObj);
         console.log('pilot', cookies.get('pilot')); // Pacman
 
+        localStorage.setItem('user', JSON.stringify({
+            email: oneObj.email,
+            role: 'pilot',
+        }))
+
         axios.post(`${url}/api/pilot/create`, {
             name: oneObj.name,
             phone: oneObj.phone,
@@ -43,11 +48,14 @@ function Four()  {
             .then(function (response) {
                 console.log(response);
                 alert(response.data.message);
+                window.location = "/profile/pilot"
             })
             .catch(function (error) {
                 console.log(error);
                 alert("error")
             });
+
+        
     }
 
 

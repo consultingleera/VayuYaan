@@ -2,7 +2,36 @@ import Navbar from '../../common/navbar/Navbar';
 import styles from '../profile.module.scss';
 import { Stepper } from 'react-form-stepper';
 
+import Cookies from 'universal-cookie';
+import { useState } from 'react';
+const cookies = new Cookies();
+
 function Two()  {
+
+    const [name, setName] = useState('');
+    const [address, setAddress] = useState('');
+    const [city, setCity] = useState('');
+    const [country, setCountry] = useState('');
+    const [zipcode, setZipcode] = useState('');
+
+    const onSubmit = () => {
+        let oneObj = cookies.get('farmer');
+
+        let farm = {
+            name,
+            address,
+            city,
+            country,
+            zipcode
+        }
+
+        oneObj.farm = farm;
+
+        cookies.set('farmer', oneObj);
+        console.log('farmer', cookies.get('farmer')); // Pacman
+
+        window.location="/profile/farmer/3"
+    }
 
     return (
         <>
@@ -26,19 +55,19 @@ function Two()  {
                         Farm address
                     </div>
                     <div className={styles['input-field']}>
-                        <input type="text" placeholder="Name" />
+                        <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" />
                     </div>
                     <div className={styles['input-field']}>
-                        <input type="text" placeholder="Address" />
+                        <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} placeholder="Address" />
                     </div>
                     <div className={styles['input-field']}>
-                        <input type="text" placeholder="City" />
+                        <input type="text" value={city} onChange={(e) => setCity(e.target.value)} placeholder="City" />
                     </div>
                     <div className={styles['input-field']}>
-                        <input type="text" placeholder="Country" />
+                        <input type="text" value={country} onChange={(e) => setCountry(e.target.value)} placeholder="Country" />
                     </div>
                     <div className={styles['input-field']}>
-                        <input type="text" placeholder="Zip Code" />
+                        <input type="text" value={zipcode} onChange={(e) => setZipcode(e.target.value)} placeholder="Zip Code" />
                     </div>
                 </div>
 
@@ -46,8 +75,8 @@ function Two()  {
                     <div className={styles['navigate-btn']}>
                         <button className={styles['grey']}>Back</button>
                     </div>
-                    <div className={styles['navigate-btn']} style={{cursor: "pointer"}} onClick={() => window.location="/profile/farmer/3"}>
-                        <button className={styles['blue']}>Next</button>
+                    <div className={styles['navigate-btn']} style={{cursor: "pointer"}}>
+                        <button className={styles['blue']} onClick={onSubmit}>Next</button>
                     </div>
                 </div>
                 </div>

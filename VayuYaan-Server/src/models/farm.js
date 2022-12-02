@@ -4,22 +4,22 @@ const mongoose = require('mongoose');
 const driverLicenseSchema = new mongoose.Schema({
     name: {
         type: String,
-        trim: true
+        trim: false
     },
     licenseid: {
         type: Number,
-        trim: true
+        trim: false
     },
 });
 
 const utilityBillSchema = new mongoose.Schema({
     agreementId: {
         type: String,
-        trim: true
+        trim: false
     },
     dateofsettlement: {
         type: Date,
-        required: true
+        required: false
     }
 });
 

@@ -60,7 +60,7 @@ function One()  {
                         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
                     </div>
                     <div className={styles['input-field']}>
-                        <input type="text" value={birthday} onChange={(e) => setBirthday(e.target.value)} placeholder="Birthday" />
+                        <input type="date" value={birthday} onChange={(e) => setBirthday(e.target.value)} placeholder="Birthday" />
                     </div>
                     <div className={styles['input-field']}>
                         <input type="text" value={gender} onChange={(e) => setGender(e.target.value)} placeholder="Gender" />

@@ -1,19 +1,6 @@
 const Joi = require('joi');
 const mongoose = require('mongoose');
 
-const driverLicenseSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    licenseid: {
-        type: Number,
-        required: true,
-        trim: true
-    },
-});
-
 const utilityBillSchema = new mongoose.Schema({
     agreementId: {
         type: String,
@@ -22,7 +9,7 @@ const utilityBillSchema = new mongoose.Schema({
     },
     dateofsettlement: {
         type: Date,
-        required: true
+        required: false
     }
 });
 
@@ -168,8 +155,7 @@ const farmerSchema = new mongoose.Schema({
     },
     farm: farmSchema,
     billingInformation: billingInformationSchema,
-    utilitybill: utilityBillSchema,
-    driverlicense: driverLicenseSchema
+    utilitybill: utilityBillSchema
 })
 
 const Farmer = mongoose.model('Farmer', farmerSchema);

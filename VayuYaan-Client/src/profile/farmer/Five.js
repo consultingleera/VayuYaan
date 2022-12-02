@@ -2,7 +2,34 @@ import Navbar from '../../common/navbar/Navbar';
 import styles from '../profile.module.scss';
 import { Stepper } from 'react-form-stepper';
 
+import Cookies from 'universal-cookie';
+import { useState } from 'react';
+const cookies = new Cookies();
+
 function Five()  {
+
+    const [name, setName] = useState('');
+    const [cardnumber, setCardnumber] = useState('');
+    const [expiration, setExpiration] = useState(new Date());
+    const [cvv, setCvv] = useState('');
+
+    const onSubmit = () => {
+        let oneObj = cookies.get('farmer');
+
+        let billingInformation = {
+            name,
+            cardnumber,
+            expiration,
+            cvv
+        }
+
+        oneObj.billingInformation = billingInformation;
+
+        cookies.set('farmer', oneObj);
+        console.log('farmer', cookies.get('farmer')); // Pacman
+
+        window.location="/profile/farmer/6"
+    }
 
     return (
         <>
@@ -21,23 +48,24 @@ function Five()  {
                     Fill in billing information for your profile.
                 </div>
 
+                
                 <div className={styles['form-body']}>
                     <div className={styles['form-title']}>
                         Payment Method
                     </div>
                     <div className={styles['input-field']}>
-                        <input type="text" placeholder="Name on Card" />
+                        <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name on Card" />
                     </div>
                     <div className={styles['input-field']}>
-                        <input type="text" placeholder="Card Number" />
+                        <input type="text" value={cardnumber} onChange={(e) => setCardnumber(e.target.value)} placeholder="Card Number" />
                     </div>
 
                     <div className={styles['row']}>
                         <div className={styles['input-field']}>
-                            <input type="text" placeholder="Expiration" />
+                            <input type="date" value={expiration} onChange={(e) => setExpiration(e.target.value)} placeholder="Expiration" />
                         </div>
                         <div className={styles['input-field']}>
-                            <input type="text" placeholder="CVV" />
+                            <input type="text" value={cvv} onChange={(e) => setCvv(e.target.value)} placeholder="CVV" />
                         </div>
                     </div>
 
@@ -52,8 +80,8 @@ function Five()  {
                     <div className={styles['navigate-btn']}>
                         <button className={styles['grey']}>Back</button>
                     </div>
-                    <div className={styles['navigate-btn']} style={{cursor: "pointer"}} onClick={() => window.location="/profile/farmer/6"}>
-                        <button className={styles['blue']}>Next</button>
+                    <div className={styles['navigate-btn']}>
+                        <button className={styles['blue']} style={{cursor: "pointer"}} onClick={onSubmit}>Next</button>
                     </div>
                 </div>
                 </div>

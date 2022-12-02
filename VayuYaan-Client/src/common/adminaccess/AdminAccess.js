@@ -2,7 +2,7 @@ function AdminAccess()  {
 
     return (
         <div>
-            You need admin access to access this
+            Access Denied!
         </div>
     )
 }

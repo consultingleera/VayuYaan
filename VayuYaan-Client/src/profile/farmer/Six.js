@@ -3,7 +3,59 @@ import styles from '../profile.module.scss';
 import { Stepper } from 'react-form-stepper';
 import Upload from '../../common/upload/Upload';
 
+import { url } from '../../utils/constants';
+
+import Cookies from 'universal-cookie';
+import { useState } from 'react';
+import axios from 'axios';
+const cookies = new Cookies();
+
 function Six()  {
+
+    const [agreementId, setAgreementId] = useState('');
+    const [dateofsettlement, setDateofsettlement] = useState(new Date());
+
+    const onSubmit = () => {
+        let oneObj = cookies.get('farmer');
+
+        let utilitybill = {
+            agreementId,
+            dateofsettlement
+        }
+
+        oneObj.utilitybill = utilitybill;
+
+        cookies.set('farmer', oneObj);
+        console.log('farmer', cookies.get('farmer')); // Pacman
+
+        localStorage.setItem('user', JSON.stringify({
+            email: oneObj.email,
+            role: 'farmer'
+        }))
+        
+        axios.post(`${url}/api/farmer/create`, {
+            name: oneObj.name,
+            phone: oneObj.phone,
+            email: oneObj.email,
+            birthday : oneObj.birthday,
+            gender : oneObj.gender,
+            farm: oneObj.farm,
+            billingInformation: oneObj.billingInformation,
+            utilitybill: oneObj.utilitybill
+        }, {
+            "Content-Type": "application/json",
+        })
+            .then(function (response) {
+                console.log(response);
+                alert(response.data.message);
+                window.location = "/profile.farmer"
+            })
+            .catch(function (error) {
+                console.log(error);
+                alert("error")
+            });
+        
+    }
 
     return (
         <>
@@ -29,10 +81,10 @@ function Six()  {
 
                     <div className={styles['row']}>
                         <div className={styles['input-field']}>
-                            <input type="text" placeholder="Statement Agreement ID" />
+                            <input type="text" value={agreementId} onChange={(e) => setAgreementId(e.target.value)} placeholder="Statement Agreement ID" />
                         </div>
                         <div className={styles['input-field']}>
-                            <input type="text" placeholder="Date of bill statement" />
+                            <input type="date" value={dateofsettlement} onChange={(e) => setDateofsettlement(e.target.value)} placeholder="Date of bill statement" />
                         </div>
                     </div>
                     
@@ -44,8 +96,8 @@ function Six()  {
                     <div className={styles['navigate-btn']}>
                         <button className={styles['grey']}>Back</button>
                     </div>
-                    <div className={styles['navigate-btn']} style={{cursor: "pointer"}} onClick={() => window.location="/profile/farmer/7"}>
-                        <button className={styles['blue']}>Next</button>
+                    <div className={styles['navigate-btn']} style={{cursor: "pointer"}}>
+                        <button className={styles['blue']} onClick={onSubmit}>Create Farmer</button>
                     </div>
                 </div>
                 </div>

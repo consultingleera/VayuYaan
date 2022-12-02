@@ -70,13 +70,13 @@ function Login() {
                         <button onClick={onLogin}>Log in</button>
                     </div>
                 </div>
-                <div className={styles['form-footer']}>
+                <div className={styles['form-footer']} style={{cursor: "pointer"}} onClick={() => window.location="/auth/signup"}>
                     Don't have an account? Sign up
                 </div>
-
+{/* 
                 <div className={styles['google-auth']}>
                     <button><FontAwesomeIcon icon="fa-brands fa-google" />Log in with Google</button>
-                </div>
+                </div> */}
             </div>
             
         </div>

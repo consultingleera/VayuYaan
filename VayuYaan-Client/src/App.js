@@ -19,6 +19,7 @@ import FarmTwo from "./profile/farm/Two";
 import FarmThree from "./profile/farm/Three";
 import Farm from "./profile/Farm";
 import Farmer from "./profile/Farmer";
+import Pilot from "./profile/Pilot";
 import Farmland from "./profile/Farmland";
 import MyBookings from "./dashboard/farmer/MyBookings";
 import ServiceRequest from "./dashboard/farmer/ServiceRequest";
@@ -35,6 +36,10 @@ import CreateDroneSimulation from "./dashboard/farmer/CreateDroneSimulation.js";
 import PilotDashboard from "./dashboard/pilot/PilotDashboard";
 import DroneOne from "./profile/drone/One";
 import AdminAccess from "./common/adminaccess/AdminAccess";
+import ScheduleOne from "./dashboard/pilot/ScheduleOne";
+import ScheduleTwo from "./dashboard/pilot/ScheduleTwo";
+import ScheduleThree from "./dashboard/pilot/ScheduleThree";
+
 
 function App() {
   return (
@@ -64,6 +69,7 @@ function App() {
           <Route path="drone/1" element={<DroneOne />} />
 
           <Route path="farmer" element={<Farmer />} />
+          <Route path="pilot" element={<Pilot />} />
           <Route path="farm" element={<Farm />} />
           <Route path="farmland" element={<Farmland />} />
         </Route>
@@ -79,6 +85,10 @@ function App() {
           <Route path="farmer/dronesimulation/create" element={<CreateDroneSimulation />} />
 
           <Route path="pilot" element={<PilotDashboard />} />
+          <Route path="pilot/scheduleOne/:id" element={<ScheduleOne />} />
+          <Route path="pilot/scheduleTwo" element={<ScheduleTwo />} />
+          <Route path="pilot/scheduleThree/:id" element={<ScheduleThree />} />
+
           {/* <Route path="pilot/myschedule" element={<MySchedule />} /> */}
 
           <Route path="farmer/management" element={<FarmerManagement />} />

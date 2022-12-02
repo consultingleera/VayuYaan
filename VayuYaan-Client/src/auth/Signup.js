@@ -71,13 +71,13 @@ function Signup() {
                         <button  onClick={() => window.location="/profile"}>Sign Up</button>
                     </div>
                 </div>
-                <div className={styles['form-footer']}>
+                <div className={styles['form-footer']} style={{cursor: "pointer"}} onClick={() => window.location="/auth/login"}>
                     Already have an account? Log in
                 </div>
 
-                <div className={styles['google-auth']}>
+                {/* <div className={styles['google-auth']}>
                     <button><FontAwesomeIcon icon="fa-brands fa-google" />Sign up with Google</button>
-                </div>
+                </div> */}
             </div>
             
         </div>
