@@ -1,0 +1,74 @@
+.container {
+    margin: 12px;
+    display: flex;
+    justify-content: space-between;
+
+    .banner {
+        img {
+            height: 96vh;
+            width: 100%;
+            border-radius: 5px;
+        }
+    }
+
+    .form {
+        margin: auto;
+
+        .header {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 36px;
+            line-height: 44px;
+            color: #1A3447;
+        }
+
+        .input-field    {
+            margin: 12px 0px;
+
+            .input-item {
+                margin: 24px 0px;
+                
+                input {
+                    font-size: 18px;
+                    box-sizing: border-box;
+                    background: #FFFFFF;
+                    border: 2px solid #1A3447;
+                    border-radius: 5px;
+                    width: 800px;
+                    height: 50px;
+                }    
+            }
+
+            .input-button   {
+
+                button {
+                    background: #1A3447;
+                    border-radius: 5px;
+                    color: white;
+                    width: 800px;
+                    height: 50px;
+                    font-size: 24px;
+                }
+            }
+        }
+
+        .form-footer {
+            text-align: center;
+            margin: 24px;
+        }
+
+        .google-auth {
+
+            button {
+                color: #464646;
+                padding: 16px;
+                font-size: 18px;
+                width: 800px;
+                margin: 32px 0 0 0;
+                background-color: transparent;
+                border: 1px solid rgb(159, 159, 159);
+            }
+        }
+    }
+}
